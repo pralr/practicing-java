@@ -9,14 +9,8 @@ public class Main2 {
 	public static void main(String[] args) {
 		
 		String path = "c:\\ws-practice\\training-java\\file.txt";
-		FileReader fr =  null;
-		BufferedReader br = null;
+		try (BufferedReader br = new BufferedReader(new FileReader(path))) {
 		
-		try {
-			
-			fr = new FileReader(path);
-			br = new BufferedReader(fr);
-			
 			String line = br.readLine(); 
 			
 			while(line !=null) {
@@ -26,19 +20,6 @@ public class Main2 {
 			
 		} catch (IOException e) {
 			System.out.println(e.getMessage());
-		} finally {
-			
-			try {
-				if(br !=null) {
-					br.close();
-				}
-				
-				if(fr != null) {
-					fr.close();
-				} 
-			} catch(IOException e) {
-				e.printStackTrace();
-				}
-			}
-		}
+		} 
 	}
+}
